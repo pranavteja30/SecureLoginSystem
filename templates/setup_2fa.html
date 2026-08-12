@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Set Up Two-Factor Authentication</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="card">
+
+        <h1>Set Up 2FA</h1>
+
+        <p class="subtitle">
+            Scan the QR code using your authenticator application.
+        </p>
+
+        <div style="text-align: center; margin: 25px 0;">
+
+            <img
+                src="data:image/png;base64,{{ qr_code }}"
+                alt="2FA QR Code"
+                width="200"
+                height="200"
+            >
+
+        </div>
+
+        <p>
+            If you cannot scan the QR code, enter this secret manually:
+        </p>
+
+        <div class="security-status">
+            <strong>{{ secret }}</strong>
+        </div>
+
+        <form method="POST">
+
+            <label for="code">
+                Authentication Code
+            </label>
+
+            <input
+                type="text"
+                id="code"
+                name="code"
+                placeholder="Enter 6-digit code"
+                maxlength="6"
+                pattern="[0-9]{6}"
+                required
+            >
+
+            <button type="submit">
+                Enable 2FA
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>
